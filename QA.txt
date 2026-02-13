@@ -1,1 +1,27 @@
-This is a QA project
+{
+  "environment": "qa",
+  "app": {
+    "name": "MyApp",
+    "debug": false,
+    "logLevel": "info"
+  },
+  "server": {
+    "host": "qa.myapp.internal",
+    "port": 4000
+  },
+  "database": {
+    "host": "qa-db.myapp.internal",
+    "port": 5432,
+    "name": "myapp_qa",
+    "username": "qa_user",
+    "password": "qa_password"
+  },
+  "api": {
+    "baseUrl": "https://qa-api.myapp.com",
+    "timeout": 8000
+  },
+  "features": {
+    "enableBetaFeatures": true,
+    "enableMockServices": false
+  }
+}
