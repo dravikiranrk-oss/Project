@@ -1,1 +1,27 @@
-This is my testing file
+{
+  "environment": "test",
+  "app": {
+    "name": "MyApp",
+    "debug": false,
+    "logLevel": "warn"
+  },
+  "server": {
+    "host": "test.myapp.internal",
+    "port": 5000
+  },
+  "database": {
+    "host": "test-db.myapp.internal",
+    "port": 5432,
+    "name": "myapp_test",
+    "username": "test_user",
+    "password": "test_password"
+  },
+  "api": {
+    "baseUrl": "https://test-api.myapp.com",
+    "timeout": 10000
+  },
+  "features": {
+    "enableBetaFeatures": false,
+    "enableMockServices": false
+  }
+}

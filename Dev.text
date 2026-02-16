@@ -1,2 +1,27 @@
-Hi
-Hello
+{
+  "environment": "development",
+  "app": {
+    "name": "MyApp",
+    "debug": true,
+    "logLevel": "debug"
+  },
+  "server": {
+    "host": "localhost",
+    "port": 3000
+  },
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "name": "myapp_dev",
+    "username": "dev_user",
+    "password": "dev_password"
+  },
+  "api": {
+    "baseUrl": "https://dev-api.myapp.com",
+    "timeout": 5000
+  },
+  "features": {
+    "enableBetaFeatures": true,
+    "enableMockServices": true
+  }
+}

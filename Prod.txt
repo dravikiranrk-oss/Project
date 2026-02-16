@@ -1,1 +1,31 @@
+<<<<<<< HEAD
 Its a Production    Environment 
+=======
+{
+  "environment": "production",
+  "app": {
+    "name": "MyApp",
+    "debug": false,
+    "logLevel": "error"
+  },
+  "server": {
+    "host": "0.0.0.0",
+    "port": 80
+  },
+  "database": {
+    "host": "prod-db.myapp.internal",
+    "port": 5432,
+    "name": "myapp_prod",
+    "username": "prod_user",
+    "password": "prod_password"
+  },
+  "api": {
+    "baseUrl": "https://prod-api.myapp.com",
+    "timeout": 15000
+  },
+  "features": {
+    "enableBetaFeatures": false,
+    "enableMockServices": false
+  }
+}
+This is a Production Environment change
