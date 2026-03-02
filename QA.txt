@@ -18,7 +18,7 @@
   },
   "api": {
     "baseUrl": "https://qa-api.myapp.com",
-    "timeout": 8000
+    "timeout": 9000
   },
   "features": {
     "enableBetaFeatures": true,

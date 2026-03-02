@@ -21,7 +21,7 @@
     "timeout": 10000
   },
   "features": {
-    "enableBetaFeatures": false,
+    "enableBetaFeatures": true,
     "enableMockServices": false
   }
 }
