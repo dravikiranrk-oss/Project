@@ -22,6 +22,6 @@
   },
   "features": {
     "enableBetaFeatures": true,
-    "enableMockServices": true
+    "enableMockServices": false
   }
 }
