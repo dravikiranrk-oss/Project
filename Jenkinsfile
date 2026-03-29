@@ -1,4 +1,3 @@
-
 // Pipeline creation
 
 pipeline {
@@ -24,19 +23,17 @@ pipeline {
             steps {
                 script {
                     def cfg = readJSON file: 'config.json'
-
                     def envCfg = cfg[params.ENVIRONMENT]
 
                     env.APP_NAME = envCfg.app_name
                     env.SERVER   = envCfg.server
                     env.PORT     = envCfg.port.toString()
-                    
-            env.REGIONS = ''
-            envCfg.regions.each { r ->
-                env.REGIONS += r + ','
-            }
-            env.REGIONS = env.REGIONS[0..-2]
 
+                    env.REGIONS = ''
+                    envCfg.regions.each { r ->
+                        env.REGIONS += r + ','
+                    }
+                    env.REGIONS = env.REGIONS[0..-2]
 
                     echo "Environment : ${params.ENVIRONMENT}"
                     echo "App Name    : ${env.APP_NAME}"
@@ -49,13 +46,23 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh """
-                    echo "Deploying ${APP_NAME}"
-                    echo "Server : ${SERVER}"
-                    echo "Port   : ${PORT}"
-                    echo "Regions: ${REGIONS}"
-                    echo "Deployment SUCCESS"
-                """
+                script {
+                    if (isUnix()) {
+                        sh """
+                            echo "Deploying ${APP_NAME}"
+                            echo "Server : ${SERVER}"
+                            echo "Port   : ${PORT}"
+                            echo "Regions: ${REGIONS}"
+                        """
+                    } else {
+                        bat """
+                            echo Deploying %APP_NAME%
+                            echo Server : %SERVER%
+                            echo Port   : %PORT%
+                            echo Regions: %REGIONS%
+                        """
+                    }
+                }
             }
         }
     }
