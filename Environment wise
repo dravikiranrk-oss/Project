@@ -1,6 +1,11 @@
 
 {
-  "dev": {
+   "test": {
+    "app_name": "sample-app",
+    "server": "test.server.local",
+    "port": 8079
+   },
+    "dev": {
     "app_name": "sample-app",
     "server": "dev.server.local",
     "port": 8080
