@@ -1,27 +1,66 @@
-//Pipeline creation
-{
-   "test": {
-    "app_name": "sample-app",
-    "server": "test.server.local",
-    "port": 8079,
-    "regions": ["us-east-1","us-west-1"]
-   },
-    "dev": {
-    "app_name": "sample-app",
-    "server": "dev.server.local",
-    "port": 8080,
-    "regions": ["us-east-1","us-west-1"]
-  },
-  "qa": {
-    "app_name": "sample-app",
-    "server": "qa.server.local",
-    "port": 8081,
-    "regions": ["us-east-1","us-west-1"]
-  },
-  "prod": {
-    "app_name": "sample-app",
-    "server": "prod.server.local",
-    "port": 8082,
-    "regions": ["us-east-1","us-west-1"]
-  }
+
+// Pipeline creation
+
+pipeline {
+    agent any
+
+    parameters {
+        choice(
+            name: 'ENVIRONMENT',
+            choices: ['test', 'dev', 'qa', 'prod'],
+            description: 'Select environment'
+        )
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Read Configuration from JSON') {
+            steps {
+                script {
+                    def cfg = readJSON file: 'config.json'
+
+                    def envCfg = cfg[params.ENVIRONMENT]
+
+                    env.APP_NAME = envCfg.app_name
+                    env.SERVER   = envCfg.server
+                    env.PORT     = envCfg.port.toString()
+                    env.REGIONS  = envCfg.regions.join(',')
+
+                    echo "Environment : ${params.ENVIRONMENT}"
+                    echo "App Name    : ${env.APP_NAME}"
+                    echo "Server      : ${env.SERVER}"
+                    echo "Port        : ${env.PORT}"
+                    echo "Regions     : ${env.REGIONS}"
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh """
+                    echo "Deploying ${APP_NAME}"
+                    echo "Server : ${SERVER}"
+                    echo "Port   : ${PORT}"
+                    echo "Regions: ${REGIONS}"
+                    echo "Deployment SUCCESS"
+                """
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Pipeline finished successfully"
+        }
+        failure {
+            echo "Pipeline failed"
+        }
+    }
 }
+``
