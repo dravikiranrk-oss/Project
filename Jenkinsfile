@@ -30,7 +30,13 @@ pipeline {
                     env.APP_NAME = envCfg.app_name
                     env.SERVER   = envCfg.server
                     env.PORT     = envCfg.port.toString()
-                    env.REGIONS  = envCfg.regions.join(',')
+                    
+            env.REGIONS = ''
+            envCfg.regions.each { r ->
+                env.REGIONS += r + ','
+            }
+            env.REGIONS = env.REGIONS[0..-2]
+
 
                     echo "Environment : ${params.ENVIRONMENT}"
                     echo "App Name    : ${env.APP_NAME}"
