@@ -1,0 +1,18 @@
+
+{
+  "dev": {
+    "app_name": "sample-app",
+    "server": "dev.server.local",
+    "port": 8080
+  },
+  "qa": {
+    "app_name": "sample-app",
+    "server": "qa.server.local",
+    "port": 8081
+  },
+  "prod": {
+    "app_name": "sample-app",
+    "server": "prod.server.local",
+    "port": 8082
+  }
+}
