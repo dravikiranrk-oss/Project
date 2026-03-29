@@ -1,0 +1,27 @@
+##Pipeline creation
+{
+   "test": {
+    "app_name": "sample-app",
+    "server": "test.server.local",
+    "port": 8079,
+    "regions": ["us-east-1","us-west-1"]
+   },
+    "dev": {
+    "app_name": "sample-app",
+    "server": "dev.server.local",
+    "port": 8080,
+    "regions": ["us-east-1","us-west-1"]
+  },
+  "qa": {
+    "app_name": "sample-app",
+    "server": "qa.server.local",
+    "port": 8081,
+    "regions": ["us-east-1","us-west-1"]
+  },
+  "prod": {
+    "app_name": "sample-app",
+    "server": "prod.server.local",
+    "port": 8082,
+    "regions": ["us-east-1","us-west-1"]
+  }
+}
